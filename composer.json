@@ -1,0 +1,21 @@
+{
+    "name": "mafzst/captainup-php",
+    "description": "A PHP SDK for CaptainUp",
+    "license": "GNU GPL v3",
+    "version": "0.1.0",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Nicolas Perraut",
+            "email": "n.perraut@gmail.com"
+        }
+    ],
+    "require": {
+        "tcdent/php-restclient": "^0.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mafzst\\CaptainUp\\": "lib"
+        }
+    }
+}
