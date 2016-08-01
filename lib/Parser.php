@@ -5,9 +5,11 @@ namespace Mafzst\CaptainUp;
 
 
 use Mafzst\CaptainUp\Entity\Action;
+use Mafzst\CaptainUp\Entity\Activity;
 use Mafzst\CaptainUp\Entity\Application;
 use Mafzst\CaptainUp\Entity\Badge;
 use Mafzst\CaptainUp\Entity\Level;
+use Mafzst\CaptainUp\Entity\User;
 
 class Parser
 {
@@ -53,6 +55,31 @@ class Parser
         self::hydrateObject($action, $data);
 
         return $action;
+    }
+
+    public static function parseUser($data)
+    {
+        $user = new User();
+        self::hydrateObject($user, $data);
+
+        foreach ($user->activities as $i => $activity) {
+            $user->activities[$i] = self::parseActivity($activity);
+        }
+
+        $user->level = self::parseLevel($user->level);
+        $user->next_level = self::parseLevel($user->next_level);
+
+        return $user;
+    }
+
+    public static function parseActivity($data)
+    {
+        $data->id = $data->_id;
+
+        $activity = new Activity();
+        self::hydrateObject($activity, $data);
+
+        return $activity;
     }
 
     private static function hydrateObject(&$object, $data)

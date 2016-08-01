@@ -30,6 +30,13 @@ class Captain
         return Parser::parseApp($data);
     }
 
+    public function getUser($user_id)
+    {
+        $endpoint = "players/" . $user_id . "?app=" . $this->key;
+        $data = $this->requestApi($endpoint);
+        return Parser::parseUser($data);
+    }
+
     protected function requestApi($endpoint)
     {
         $result = $this->api->get($endpoint);
