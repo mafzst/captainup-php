@@ -11,13 +11,11 @@ class Captain
 {
     private $key;
     private $baseUrl = "https://captainup.com/mechanics/v1/";
-    private $format = "json";
     private $api;
 
-    public function __construct($key, $format = null, $baseUrl = null)
+    public function __construct($key, $baseUrl = null)
     {
         $this->key = $key;
-        if ($format) $this->format = $format;
         if ($baseUrl) $this->baseUrl = $baseUrl;
 
         $this->api = new \RestClient([
